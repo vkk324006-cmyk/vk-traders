@@ -102,7 +102,7 @@
                         View Products & Prices <i class="fa-solid fa-arrow-down text-xs"></i>
                     </a>
                     <button onclick="openAdminLogin()" class="bg-white/10 hover:bg-white/25 text-white border border-white/20 font-medium px-6 py-3 rounded-xl transition flex items-center gap-2">
-                        <i class="fa-solid fa-lock text-goldAccent"></i> Admin Price Manager
+                        <i class="fa-solid fa-lock text-goldAccent"></i> Admin Price & Image Manager
                     </button>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <p class="text-sm text-gray-300 leading-relaxed mb-4">
-                        Spice prices fluctuate based on season and yield. You can update prices anytime using our built-in <strong>Price Manager</strong> below or log in as admin.
+                        Spice prices fluctuate based on season and yield. You can update prices and upload new product photos anytime using our built-in <strong>Admin Panel</strong> below.
                     </p>
                     <div class="bg-emeraldBrand-light/50 p-3 rounded-xl text-xs text-goldAccent-light flex items-center gap-2">
                         <i class="fa-solid fa-circle-check"></i> GST & Freight calculated at dispatch
@@ -149,10 +149,10 @@
             <div class="w-12 h-12 bg-emeraldBrand/10 text-emeraldBrand rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
                 <i class="fa-solid fa-sliders"></i>
             </div>
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldBrand">Need to Update Prices or Add Products?</h2>
-            <p class="text-gray-600 text-sm sm:text-base mt-2 mb-6">Since spice prices change frequently, you can modify prices, add new inventory, or change descriptions instantly right from your browser.</p>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldBrand">Need to Update Prices or Upload Photos?</h2>
+            <p class="text-gray-600 text-sm sm:text-base mt-2 mb-6">Modify prices, upload new product images directly from your device, or add new items instantly right from your browser.</p>
             <button onclick="openAdminLogin()" class="bg-emeraldBrand hover:bg-emeraldBrand-light text-white font-medium px-8 py-3 rounded-xl shadow-md transition inline-flex items-center gap-2">
-                <i class="fa-solid fa-lock text-goldAccent"></i> Open Price & Product Manager
+                <i class="fa-solid fa-lock text-goldAccent"></i> Open Price & Image Manager
             </button>
         </div>
     </section>
@@ -254,10 +254,10 @@
                 <!-- Login State -->
                 <div id="admin-login-view" class="p-8">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Admin Price Manager Login</h3>
+                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Admin Manager Login</h3>
                         <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
                     </div>
-                    <p class="text-sm text-gray-600 mb-4">Enter admin password to modify prices or add new products. (Default password: <code class="bg-gray-100 px-2 py-1 rounded text-emeraldBrand font-bold">vkadmin123</code>)</p>
+                    <p class="text-sm text-gray-600 mb-4">Enter admin password to modify prices or upload product images. (Default password: <code class="bg-gray-100 px-2 py-1 rounded text-emeraldBrand font-bold">vkadmin123</code>)</p>
                     <input type="password" id="admin-pass" placeholder="Enter password" class="w-full px-4 py-3 border border-gray-300 rounded-xl mb-4 focus:ring-2 focus:ring-emeraldBrand outline-none">
                     <button onclick="verifyAdmin()" class="w-full bg-emeraldBrand text-white py-3 rounded-xl font-medium hover:bg-emeraldBrand-light transition">Login to Manager</button>
                 </div>
@@ -265,25 +265,40 @@
                 <!-- Dashboard State -->
                 <div id="admin-dashboard-view" class="p-8 hidden max-h-[80vh] overflow-y-auto">
                     <div class="flex justify-between items-center mb-6 border-b pb-4">
-                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Manage Products & Prices</h3>
+                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Manage Products, Prices & Images</h3>
                         <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
                     </div>
 
-                    <!-- Add New Product Form -->
+                    <!-- Add New Product Form with Image Upload -->
                     <div class="bg-gray-50 p-4 rounded-xl mb-6 border border-gray-200">
-                        <h4 class="font-bold text-sm text-emeraldBrand mb-3"><i class="fa-solid fa-plus text-goldAccent"></i> Add New Product</h4>
+                        <h4 class="font-bold text-sm text-emeraldBrand mb-3"><i class="fa-solid fa-plus text-goldAccent"></i> Add New Product & Upload Image</h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                            <input type="text" id="new-name" placeholder="Product Name (e.g. Green Cardamom A-Grade)" class="px-3 py-2 border rounded-lg text-sm">
-                            <input type="text" id="new-price" placeholder="Price Note (e.g. ₹3200 + gst + freight)" class="px-3 py-2 border rounded-lg text-sm">
-                            <input type="text" id="new-badge" placeholder="Badge (e.g. Premium / Best Seller)" class="px-3 py-2 border rounded-lg text-sm">
-                            <input type="text" id="new-image" placeholder="Image URL (optional)" class="px-3 py-2 border rounded-lg text-sm">
+                            <div>
+                                <label class="block text-xs text-gray-600 mb-1">Product Name</label>
+                                <input type="text" id="new-name" placeholder="e.g. Premium Cardamom" class="w-full px-3 py-2 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-600 mb-1">Price & Terms</label>
+                                <input type="text" id="new-price" placeholder="e.g. ₹ 3000 + gst + freight" class="w-full px-3 py-2 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-600 mb-1">Badge Tag</label>
+                                <input type="text" id="new-badge" placeholder="e.g. Best Seller" class="w-full px-3 py-2 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-600 mb-1">Upload Product Image from Device</label>
+                                <input type="file" id="new-image-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emeraldBrand file:text-white hover:file:bg-emeraldBrand-light">
+                            </div>
                         </div>
-                        <textarea id="new-desc" placeholder="Product Description" class="w-full px-3 py-2 border rounded-lg text-sm mb-3"></textarea>
+                        <div class="mb-3">
+                            <label class="block text-xs text-gray-600 mb-1">Description</label>
+                            <textarea id="new-desc" placeholder="Product details..." class="w-full px-3 py-2 border rounded-lg text-sm"></textarea>
+                        </div>
                         <button onclick="addNewProduct()" class="bg-goldAccent hover:bg-goldAccent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Add Product</button>
                     </div>
 
                     <!-- Existing Products Management List -->
-                    <h4 class="font-bold text-sm text-emeraldBrand mb-3">Existing Products & Quick Price Edit</h4>
+                    <h4 class="font-bold text-sm text-emeraldBrand mb-3">Existing Products & Quick Edit</h4>
                     <div id="admin-product-list" class="space-y-4">
                         <!-- Populated via JS -->
                     </div>
@@ -466,9 +481,12 @@
             products.forEach(p => {
                 listEl.innerHTML += `
                     <div class="bg-white p-4 rounded-xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-                        <div class="text-left w-full sm:w-auto">
-                            <h5 class="font-bold text-emeraldBrand text-sm">${p.name}</h5>
-                            <input type="text" id="price-input-${p.id}" value="${p.priceNote}" class="mt-1 px-2 py-1 border rounded text-xs w-full sm:w-64">
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover">
+                            <div class="text-left w-full">
+                                <h5 class="font-bold text-emeraldBrand text-sm">${p.name}</h5>
+                                <input type="text" id="price-input-${p.id}" value="${p.priceNote}" class="mt-1 px-2 py-1 border rounded text-xs w-full sm:w-56">
+                            </div>
                         </div>
                         <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
                             <button onclick="updatePrice(${p.id})" class="bg-emeraldBrand text-white text-xs px-3 py-1.5 rounded-lg">Save Price</button>
@@ -494,26 +512,39 @@
             const name = document.getElementById('new-name').value;
             const price = document.getElementById('new-price').value;
             const badge = document.getElementById('new-badge').value || "New";
-            const image = document.getElementById('new-image').value || "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80";
             const desc = document.getElementById('new-desc').value || "High quality spice product.";
+            const fileInput = document.getElementById('new-image-file');
 
             if (!name || !price) {
                 alert("Please fill in at least the product name and price note.");
                 return;
             }
 
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    saveNewProductData(name, price, badge, desc, e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                // Default fallback image if no file chosen
+                saveNewProductData(name, price, badge, desc, "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80");
+            }
+        }
+
+        function saveNewProductData(name, price, badge, desc, imageUrl) {
             const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-            products.push({ id: newId, name, priceNote: price, badge, desc, image });
+            products.push({ id: newId, name, priceNote: price, badge, desc, image: imageUrl });
 
             document.getElementById('new-name').value = '';
             document.getElementById('new-price').value = '';
             document.getElementById('new-badge').value = '';
-            document.getElementById('new-image').value = '';
             document.getElementById('new-desc').value = '';
+            document.getElementById('new-image-file').value = '';
 
             renderProducts();
             renderAdminList();
-            showToast("New product added successfully!");
+            showToast("New product and image added successfully!");
         }
 
         function deleteProduct(id) {
