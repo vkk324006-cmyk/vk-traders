@@ -1,1 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VK Traders - Premium Cardamom Specialists</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldBrand: {
+                            DEFAULT: '#13382B',
+                            dark: '#0A2219',
+                            light: '#1B4D3E',
+                            accent: '#2A5C47'
+                        },
+                        goldAccent: {
+                            DEFAULT: '#C68B59',
+                            light: '#E2A87B',
+                            dark: '#9A663C'
+                        },
+                        parchment: '#FBF9F4'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #13382B;
+            background-image: radial-gradient(rgba(198, 139, 89, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-parchment text-gray-800 font-sans antialiased selection:bg-goldAccent selection:text-white">
 
+    <!-- Top Announcement Bar -->
+    <div class="bg-emeraldBrand-dark text-goldAccent-light text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
+        🌿 Direct Wholesale & Retail Spice Trading | WhatsApp Orders: <span class="font-bold underline">+91 98591 33555</span>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-full bg-emeraldBrand flex items-center justify-center text-goldAccent font-serif font-bold text-xl shadow-md group-hover:bg-emeraldBrand-light transition">
+                    VK
+                </div>
+                <div>
+                    <h1 class="font-serif text-xl sm:text-2xl font-bold text-emeraldBrand leading-none">VK Traders</h1>
+                    <p class="text-[10px] sm:text-xs text-goldAccent uppercase tracking-widest font-semibold mt-1">Cardamom Specialists</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links & Cart -->
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+                    <a href="#products" class="hover:text-emeraldBrand transition">Products</a>
+                    <a href="#admin-section" class="hover:text-emeraldBrand transition">Price Manager</a>
+                    <a href="#about" class="hover:text-emeraldBrand transition">About Us</a>
+                    <a href="#contact" class="hover:text-emeraldBrand transition">Contact</a>
+                </nav>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative bg-emeraldBrand text-white px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-emeraldBrand-light transition shadow-sm">
+                    <i class="fa-solid fa-basket-shopping text-goldAccent"></i>
+                    <span class="hidden sm:inline text-sm font-medium">Cart</span>
+                    <span id="cart-count" class="bg-goldAccent text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern text-white py-16 sm:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="inline-block bg-goldAccent/20 text-goldAccent-light border border-goldAccent/30 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">
+                    Premium Quality Yields
+                </span>
+                <h1 class="font-serif text-4xl sm:text-6xl font-bold leading-tight">
+                    Pure & Fragrant <span class="text-goldAccent">Cardamom</span> Direct from Source
+                </h1>
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+                    Welcome to VK Traders. We deal in top-grade Cardamom Seeds and Husk. Prices are subject to market fluctuations (GST & freight extra). Order directly via WhatsApp.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#products" class="bg-goldAccent hover:bg-goldAccent-dark text-white font-medium px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
+                        View Products & Prices <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <button onclick="openAdminLogin()" class="bg-white/10 hover:bg-white/25 text-white border border-white/20 font-medium px-6 py-3 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-goldAccent"></i> Admin Price Manager
+                    </button>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="w-full max-w-md bg-emeraldBrand-dark/80 p-6 rounded-3xl border border-emeraldBrand-accent/50 shadow-2xl backdrop-blur-sm">
+                    <div class="flex items-center gap-4 mb-4 border-b border-emeraldBrand-light pb-4">
+                        <div class="w-12 h-12 rounded-full bg-goldAccent/20 flex items-center justify-center text-goldAccent text-xl">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-lg text-white">Market-Rate Notice</h3>
+                            <p class="text-xs text-gray-300">Updated for fluctuating spice trends</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                        Spice prices fluctuate based on season and yield. You can update prices anytime using our built-in <strong>Price Manager</strong> below or log in as admin.
+                    </p>
+                    <div class="bg-emeraldBrand-light/50 p-3 rounded-xl text-xs text-goldAccent-light flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i> GST & Freight calculated at dispatch
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="products" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-goldAccent font-semibold text-xs tracking-widest uppercase">Our Offerings</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldBrand mt-2">Available Products</h2>
+            <div class="w-16 h-1 bg-goldAccent mx-auto mt-4 rounded-full"></div>
+            <p class="text-gray-600 text-sm sm:text-base mt-4">Select your required item and add to cart to request a quotation or order via WhatsApp.</p>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Populated via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Price Manager / Admin Access Section -->
+    <section id="admin-section" class="bg-white py-16 border-y border-gray-200">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <div class="w-12 h-12 bg-emeraldBrand/10 text-emeraldBrand rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldBrand">Need to Update Prices or Add Products?</h2>
+            <p class="text-gray-600 text-sm sm:text-base mt-2 mb-6">Since spice prices change frequently, you can modify prices, add new inventory, or change descriptions instantly right from your browser.</p>
+            <button onclick="openAdminLogin()" class="bg-emeraldBrand hover:bg-emeraldBrand-light text-white font-medium px-8 py-3 rounded-xl shadow-md transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-lock text-goldAccent"></i> Open Price & Product Manager
+            </button>
+        </div>
+    </section>
+
+    <!-- About & Trust Section -->
+    <section id="about" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="text-goldAccent font-semibold text-xs tracking-widest uppercase">Established Traders</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldBrand">About VK Traders</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    VK Traders is a trusted name in spice trading, specializing in bulk and retail cardamom products. We ensure authentic sourcing, rigorous cleaning standards, and transparent pricing tailored to market dynamics.
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="text-goldAccent font-bold text-2xl font-serif">100%</div>
+                        <div class="text-xs text-gray-500 mt-1 font-medium">Pure Cardamom Produce</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="text-goldAccent font-bold text-2xl font-serif">Direct</div>
+                        <div class="text-xs text-gray-500 mt-1 font-medium">Wholesale Sourcing</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-emeraldBrand rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10 space-y-4">
+                    <h3 class="font-serif text-2xl font-bold text-goldAccent">Why Partner With Us?</h3>
+                    <ul class="space-y-3 text-sm text-gray-200">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-goldAccent"></i> Transparent pricing adjusted to market conditions
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-goldAccent"></i> Secure packing safe for long-distance freight
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-goldAccent"></i> Instant WhatsApp support & quick order confirmation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Direct Inquiry Section -->
+    <section id="contact" class="bg-emeraldBrand-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
+            <h2 class="font-serif text-3xl font-bold mb-4">Ready to Place an Order?</h2>
+            <p class="text-gray-300 text-sm mb-8">Contact us directly via WhatsApp or submit an inquiry for custom bulk requirements.</p>
+            <a href="https://wa.me/919859133555?text=Hello%20VK%20Traders,%20I%20would%20like%20to%20inquire%20about%20cardamom%20products." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-8 py-4 rounded-xl shadow-lg transition inline-flex items-center gap-3 text-lg">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> Chat on WhatsApp (+91 98591 33555)
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-emeraldBrand-dark border-t border-emeraldBrand-light text-gray-400 py-8 text-center text-xs">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 VK Traders. All rights reserved.</p>
+            <p class="text-goldAccent">Cardamom Seeds & Husk Specialists</p>
+        </div>
+    </footer>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-5 bg-emeraldBrand text-white">
+                    <h2 class="font-serif text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-basket-shopping text-goldAccent"></i> Your Order Cart
+                    </h2>
+                    <button onclick="toggleCart()" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Cart items populated via JS -->
+                </div>
+                <div class="border-t border-gray-200 px-6 py-5 bg-gray-50 space-y-4">
+                    <div class="flex justify-between text-base font-bold text-gray-900">
+                        <span>Estimated Total Items:</span>
+                        <span id="cart-total-qty">0</span>
+                    </div>
+                    <p class="text-[11px] text-gray-500 italic">* Note: GST & freight are extra as per actual market dispatch rates.</p>
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Checkout via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login & Management Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeAdminModal()"></div>
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                
+                <!-- Login State -->
+                <div id="admin-login-view" class="p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Admin Price Manager Login</h3>
+                        <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Enter admin password to modify prices or add new products. (Default password: <code class="bg-gray-100 px-2 py-1 rounded text-emeraldBrand font-bold">vkadmin123</code>)</p>
+                    <input type="password" id="admin-pass" placeholder="Enter password" class="w-full px-4 py-3 border border-gray-300 rounded-xl mb-4 focus:ring-2 focus:ring-emeraldBrand outline-none">
+                    <button onclick="verifyAdmin()" class="w-full bg-emeraldBrand text-white py-3 rounded-xl font-medium hover:bg-emeraldBrand-light transition">Login to Manager</button>
+                </div>
+
+                <!-- Dashboard State -->
+                <div id="admin-dashboard-view" class="p-8 hidden max-h-[80vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6 border-b pb-4">
+                        <h3 class="font-serif text-xl font-bold text-emeraldBrand">Manage Products & Prices</h3>
+                        <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    </div>
+
+                    <!-- Add New Product Form -->
+                    <div class="bg-gray-50 p-4 rounded-xl mb-6 border border-gray-200">
+                        <h4 class="font-bold text-sm text-emeraldBrand mb-3"><i class="fa-solid fa-plus text-goldAccent"></i> Add New Product</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                            <input type="text" id="new-name" placeholder="Product Name (e.g. Green Cardamom A-Grade)" class="px-3 py-2 border rounded-lg text-sm">
+                            <input type="text" id="new-price" placeholder="Price Note (e.g. ₹3200 + gst + freight)" class="px-3 py-2 border rounded-lg text-sm">
+                            <input type="text" id="new-badge" placeholder="Badge (e.g. Premium / Best Seller)" class="px-3 py-2 border rounded-lg text-sm">
+                            <input type="text" id="new-image" placeholder="Image URL (optional)" class="px-3 py-2 border rounded-lg text-sm">
+                        </div>
+                        <textarea id="new-desc" placeholder="Product Description" class="w-full px-3 py-2 border rounded-lg text-sm mb-3"></textarea>
+                        <button onclick="addNewProduct()" class="bg-goldAccent hover:bg-goldAccent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Add Product</button>
+                    </div>
+
+                    <!-- Existing Products Management List -->
+                    <h4 class="font-bold text-sm text-emeraldBrand mb-3">Existing Products & Quick Price Edit</h4>
+                    <div id="admin-product-list" class="space-y-4">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-emeraldBrand text-white px-5 py-3 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-goldAccent text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Item added to cart!</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initial Products Data
+        let products = [
+            {
+                id: 1,
+                name: "Cardamom seeds",
+                priceNote: "₹ 2750 + gst + freight",
+                badge: "Top Grade",
+                desc: "High quality aromatic cardamom seeds cleanly extracted and graded for maximum flavor and essential oil retention.",
+                image: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "Cardamom husk",
+                priceNote: "₹ 750 + gst + transport",
+                badge: "Bulk Available",
+                desc: "Fresh aromatic cardamom husk ideal for flavoring, tea blends, and industrial extraction purposes.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        let cart = [];
+
+        // Render Products
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            products.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-xl transition">
+                        <div>
+                            <div class="h-48 overflow-hidden relative bg-gray-100">
+                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-emeraldBrand text-goldAccent text-xs font-semibold px-3 py-1 rounded-full shadow">${p.badge}</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-xl font-bold text-emeraldBrand mb-1">${p.name}</h3>
+                                <div class="text-goldAccent font-bold text-lg mb-3">${p.priceNote}</div>
+                                <p class="text-gray-600 text-sm leading-relaxed">${p.desc}</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="addToCart(${p.id})" class="w-full bg-emeraldBrand hover:bg-emeraldBrand-light text-white font-medium py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-basket-shopping text-goldAccent"></i> Add to Inquiry Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Cart Operations
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added "${product.name}" to cart`);
+        }
+
+        function updateCartUI() {
+            const countEl = document.getElementById('cart-count');
+            const totalQtyEl = document.getElementById('cart-total-qty');
+            const itemsContainer = document.getElementById('cart-items');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            countEl.innerText = totalQty;
+            totalQtyEl.innerText = totalQty;
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+                        <p class="text-sm">Your cart is empty.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            itemsContainer.innerHTML = '';
+            cart.forEach(item => {
+                itemsContainer.innerHTML += `
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+                        <div>
+                            <h4 class="font-serif font-bold text-emeraldBrand text-sm">${item.name}</h4>
+                            <p class="text-xs text-goldAccent font-semibold">${item.priceNote}</p>
+                            <span class="text-xs text-gray-500">Qty: ${item.qty}</span>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-600 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
+                    </div>
+                `;
+            });
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            let message = "Hello VK Traders, I would like to order/inquire about the following items:%0A%0A";
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - Price note: ${item.priceNote}%0A`;
+            });
+            message += "%0APlease confirm total with GST and freight.";
+
+            const url = `https://wa.me/919859133555?text=${message}`;
+            window.open(url, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // Admin Functions
+        function openAdminLogin() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-login-view').classList.remove('hidden');
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function verifyAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'vkadmin123') {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminList();
+            } else {
+                alert('Incorrect password! Default is vkadmin123');
+            }
+        }
+
+        function renderAdminList() {
+            const listEl = document.getElementById('admin-product-list');
+            listEl.innerHTML = '';
+
+            products.forEach(p => {
+                listEl.innerHTML += `
+                    <div class="bg-white p-4 rounded-xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div class="text-left w-full sm:w-auto">
+                            <h5 class="font-bold text-emeraldBrand text-sm">${p.name}</h5>
+                            <input type="text" id="price-input-${p.id}" value="${p.priceNote}" class="mt-1 px-2 py-1 border rounded text-xs w-full sm:w-64">
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                            <button onclick="updatePrice(${p.id})" class="bg-emeraldBrand text-white text-xs px-3 py-1.5 rounded-lg">Save Price</button>
+                            <button onclick="deleteProduct(${p.id})" class="bg-red-500 text-white text-xs px-3 py-1.5 rounded-lg">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updatePrice(id) {
+            const inputVal = document.getElementById(`price-input-${id}`).value;
+            const product = products.find(p => p.id === id);
+            if (product) {
+                product.priceNote = inputVal;
+                renderProducts();
+                renderAdminList();
+                showToast(`Updated price for ${product.name}`);
+            }
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('new-name').value;
+            const price = document.getElementById('new-price').value;
+            const badge = document.getElementById('new-badge').value || "New";
+            const image = document.getElementById('new-image').value || "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80";
+            const desc = document.getElementById('new-desc').value || "High quality spice product.";
+
+            if (!name || !price) {
+                alert("Please fill in at least the product name and price note.");
+                return;
+            }
+
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            products.push({ id: newId, name, priceNote: price, badge, desc, image });
+
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-price').value = '';
+            document.getElementById('new-badge').value = '';
+            document.getElementById('new-image').value = '';
+            document.getElementById('new-desc').value = '';
+
+            renderProducts();
+            renderAdminList();
+            showToast("New product added successfully!");
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Are you sure you want to delete this product?")) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                renderAdminList();
+                showToast("Product removed");
+            }
+        }
+
+        // Initialize on load
+        renderProducts();
+    </script>
+</body>
+</html>
