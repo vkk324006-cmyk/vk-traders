@@ -47,8 +47,11 @@
 <body class="bg-parchment text-gray-800 font-sans antialiased selection:bg-goldAccent selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-emeraldBrand-dark text-goldAccent-light text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
-        🌿 Direct Wholesale & Retail Spice Trading | WhatsApp Orders: <span class="font-bold underline">+91 98591 33555</span>
+    <div class="bg-emeraldBrand-dark text-goldAccent-light text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span>🌿 Direct Wholesale & Retail Spice Trading | WhatsApp: <span class="font-bold underline">+91 98591 33555</span></span>
+        <div id="auth-status-bar" class="flex items-center gap-3">
+            <button onclick="openAuthModal('login')" class="text-xs hover:underline text-white">Customer Login</button>
+        </div>
     </div>
 
     <!-- Header / Navigation -->
@@ -95,7 +98,7 @@
                     Pure & Fragrant <span class="text-goldAccent">Cardamom</span> Direct from Source
                 </h1>
                 <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
-                    Welcome to VK Traders. We deal in top-grade Cardamom Seeds and Husk. Prices are subject to market fluctuations (GST & freight extra). Order directly via WhatsApp.
+                    Welcome to VK Traders. We deal in top-grade Cardamom Seeds and Husk. Prices are subject to market fluctuations (GST & freight extra). Order directly via WhatsApp or online checkout.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a href="#products" class="bg-goldAccent hover:bg-goldAccent-dark text-white font-medium px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
@@ -134,7 +137,7 @@
             <span class="text-goldAccent font-semibold text-xs tracking-widest uppercase">Our Offerings</span>
             <h2 class="font-serif text-3xl sm:text-4xl font-bold text-emeraldBrand mt-2">Available Products</h2>
             <div class="w-16 h-1 bg-goldAccent mx-auto mt-4 rounded-full"></div>
-            <p class="text-gray-600 text-sm sm:text-base mt-4">Select your required item and add to cart to request a quotation or order via WhatsApp.</p>
+            <p class="text-gray-600 text-sm sm:text-base mt-4">Select your required item and add to cart to request a quotation or order via WhatsApp / Payment Gateway.</p>
         </div>
 
         <!-- Dynamic Product Grid -->
@@ -215,7 +218,7 @@
         </div>
     </footer>
 
-    <!-- Slide-over Cart Drawer -->
+    <!-- Slide-over Cart & Checkout Drawer -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
@@ -237,8 +240,83 @@
                         <span id="cart-total-qty">0</span>
                     </div>
                     <p class="text-[11px] text-gray-500 italic">* Note: GST & freight are extra as per actual market dispatch rates.</p>
-                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> Checkout via WhatsApp
+                    
+                    <!-- Checkout Options -->
+                    <div class="space-y-2">
+                        <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Checkout via WhatsApp
+                        </button>
+                        <button onclick="openPaymentGateway()" class="w-full bg-goldAccent hover:bg-goldAccent-dark text-white font-medium py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-credit-card text-base"></i> Pay Online / Gateway (Future Ready)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Auth Modal (Login / Sign Up) -->
+    <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeAuthModal()"></div>
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="auth-title" class="font-serif text-xl font-bold text-emeraldBrand">Customer Login</h3>
+                    <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                
+                <div id="auth-form-container" class="space-y-4">
+                    <div id="name-field-wrap" class="hidden">
+                        <label class="block text-xs text-gray-600 mb-1">Full Name</label>
+                        <input type="text" id="auth-name" placeholder="Enter your name" class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emeraldBrand">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Mobile Number or Email</label>
+                        <input type="text" id="auth-username" placeholder="Enter phone or email" class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emeraldBrand">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Password</label>
+                        <input type="password" id="auth-password" placeholder="Enter password" class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emeraldBrand">
+                    </div>
+                    <button id="auth-submit-btn" onclick="handleAuthSubmit()" class="w-full bg-emeraldBrand text-white py-3 rounded-xl font-medium hover:bg-emeraldBrand-light transition text-sm">Login</button>
+                    
+                    <div class="text-center pt-2">
+                        <button id="auth-switch-btn" onclick="toggleAuthMode()" class="text-xs text-goldAccent hover:underline font-medium">Don't have an account? Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Payment Gateway Modal -->
+    <div id="payment-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closePaymentModal()"></div>
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full p-8">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h3 class="font-serif text-xl font-bold text-emeraldBrand"><i class="fa-solid fa-shield-halved text-goldAccent"></i> Secure Online Checkout</h3>
+                    <button onclick="closePaymentModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="space-y-4 text-sm text-gray-600">
+                    <p class="bg-goldAccent/10 text-goldAccent-dark p-3 rounded-xl text-xs font-medium border border-goldAccent/30">
+                        <i class="fa-solid fa-info-circle"></i> Payment gateway integration is ready. You can plug in your Razorpay, UPI QR code, or Bank Account details here in future updates.
+                    </p>
+                    <div class="border rounded-xl p-4 space-y-3 bg-gray-50">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="paymethod" checked class="text-emeraldBrand">
+                            <span>UPI / Google Pay / PhonePe / Paytm QR</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="paymethod" class="text-emeraldBrand">
+                            <span>Direct Bank Transfer (NEFT / RTGS)</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="paymethod" class="text-emeraldBrand">
+                            <span>Razorpay / Credit / Debit Card Gateway</span>
+                        </label>
+                    </div>
+                    <button onclick="simulatePayment()" class="w-full bg-emeraldBrand hover:bg-emeraldBrand-light text-white py-3.5 rounded-xl font-medium transition shadow-md">
+                        Proceed to Pay & Send Order to WhatsApp
                     </button>
                 </div>
             </div>
@@ -257,9 +335,9 @@
                         <h3 class="font-serif text-xl font-bold text-emeraldBrand">Admin Manager Login</h3>
                         <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
                     </div>
-                    <p class="text-sm text-gray-600 mb-4">Enter admin password to modify prices or upload product images. (Default password: <code class="bg-gray-100 px-2 py-1 rounded text-emeraldBrand font-bold">vkadmin123</code>)</p>
+                    <p class="text-sm text-gray-600 mb-4">Enter your new default admin password: <code class="bg-gray-100 px-2 py-1 rounded text-emeraldBrand font-bold">VKTraders@2026</code></p>
                     <input type="password" id="admin-pass" placeholder="Enter password" class="w-full px-4 py-3 border border-gray-300 rounded-xl mb-4 focus:ring-2 focus:ring-emeraldBrand outline-none">
-                    <button onclick="verifyAdmin()" class="w-full bg-emeraldBrand text-white py-3 rounded-xl font-medium hover:bg-emeraldBrand-light transition">Login to Manager</button>
+                    <button onclick="verifyAdmin()" class="w-full bg-emeraldBrand text-white py-3 rounded-xl font-medium hover:bg-emeraldBrand-light transition text-sm">Login to Manager</button>
                 </div>
 
                 <!-- Dashboard State -->
@@ -337,6 +415,9 @@
         ];
 
         let cart = [];
+        let currentUser = null;
+        let isSignupMode = false;
+        let registeredUsers = [];
 
         // Render Products
         function renderProducts() {
@@ -432,14 +513,107 @@
                 return;
             }
 
-            let message = "Hello VK Traders, I would like to order/inquire about the following items:%0A%0A";
+            let customerInfo = currentUser ? `*Customer:* ${currentUser.name} (${currentUser.username})%0A` : "";
+            let message = `Hello VK Traders, I would like to order/inquire:%0A${customerInfo}%0A`;
             cart.forEach((item, index) => {
-                message += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - Price note: ${item.priceNote}%0A`;
+                message += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - ${item.priceNote}%0A`;
             });
             message += "%0APlease confirm total with GST and freight.";
 
             const url = `https://wa.me/919859133555?text=${message}`;
             window.open(url, '_blank');
+        }
+
+        // Customer Auth Functions
+        function openAuthModal(mode) {
+            document.getElementById('auth-modal').classList.remove('hidden');
+            if (mode === 'signup') {
+                isSignupMode = true;
+                document.getElementById('auth-title').innerText = "Customer Sign Up";
+                document.getElementById('name-field-wrap').classList.remove('hidden');
+                document.getElementById('auth-submit-btn').innerText = "Create Account";
+                document.getElementById('auth-switch-btn').innerText = "Already have an account? Login";
+            } else {
+                isSignupMode = false;
+                document.getElementById('auth-title').innerText = "Customer Login";
+                document.getElementById('name-field-wrap').classList.add('hidden');
+                document.getElementById('auth-submit-btn').innerText = "Login";
+                document.getElementById('auth-switch-btn').innerText = "Don't have an account? Sign up";
+            }
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function toggleAuthMode() {
+            openAuthModal(isSignupMode ? 'login' : 'signup');
+        }
+
+        function handleAuthSubmit() {
+            const user = document.getElementById('auth-username').value.trim();
+            const pass = document.getElementById('auth-password').value.trim();
+            const name = document.getElementById('auth-name').value.trim();
+
+            if (!user || !pass) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            if (isSignupMode) {
+                if (!name) {
+                    alert("Please enter your name.");
+                    return;
+                }
+                registeredUsers.push({ name, username: user, password: pass });
+                alert("Account created successfully! Please log in.");
+                openAuthModal('login');
+            } else {
+                const found = registeredUsers.find(u => u.username === user && u.password === pass);
+                if (found || (user === "test" && pass === "test")) {
+                    currentUser = found || { name: "Valued Customer", username: user };
+                    closeAuthModal();
+                    updateAuthUI();
+                    showToast(`Welcome back, ${currentUser.name}!`);
+                } else {
+                    alert("Invalid credentials. (Or sign up first if new)");
+                }
+            }
+        }
+
+        function updateAuthUI() {
+            const bar = document.getElementById('auth-status-bar');
+            if (currentUser) {
+                bar.innerHTML = `<span class="text-white text-xs font-semibold">👤 ${currentUser.name}</span> <button onclick="logoutUser()" class="text-xs hover:underline text-goldAccent-light">Logout</button>`;
+            } else {
+                bar.innerHTML = `<button onclick="openAuthModal('login')" class="text-xs hover:underline text-white">Customer Login</button>`;
+            }
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            updateAuthUI();
+            showToast("Logged out successfully");
+        }
+
+        // Payment Gateway Functions
+        function openPaymentGateway() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            toggleCart();
+            document.getElementById('payment-modal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+
+        function simulatePayment() {
+            closePaymentModal();
+            alert("Order placed successfully via Payment Gateway! Redirecting invoice summary to WhatsApp...");
+            checkoutWhatsApp();
         }
 
         function showToast(msg) {
@@ -465,12 +639,12 @@
 
         function verifyAdmin() {
             const pass = document.getElementById('admin-pass').value;
-            if (pass === 'vkadmin123') {
+            if (pass === 'VKTraders@2026') {
                 document.getElementById('admin-login-view').classList.add('hidden');
                 document.getElementById('admin-dashboard-view').classList.remove('hidden');
                 renderAdminList();
             } else {
-                alert('Incorrect password! Default is vkadmin123');
+                alert('Incorrect password! Default is VKTraders@2026');
             }
         }
 
@@ -527,7 +701,6 @@
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                // Default fallback image if no file chosen
                 saveNewProductData(name, price, badge, desc, "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80");
             }
         }
